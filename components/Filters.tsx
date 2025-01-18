@@ -8,6 +8,7 @@ const Filters = () => {
     const [selectedCategory, setSelectedCategory] = useState(params.filter || 'All')
 
     const handlesCategoryPress = (category: string) => {
+        console.log("Category Pressed:" + category)
         if (selectedCategory === category) {
             setSelectedCategory('All')
             router.setParams({filter: 'All'})

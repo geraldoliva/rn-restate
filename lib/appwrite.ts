@@ -91,7 +91,7 @@ export async function getLatestProperties() {
         const result = await databases.listDocuments(
             config.databaseId!,
             config.propertiesCollectionId!,
-            [Query.orderAsc('createdAt'), Query.limit(5)]
+            [Query.orderAsc('$createdAt'), Query.limit(5)]
         )
 
         return result.documents
@@ -107,7 +107,7 @@ export async function getProperties({filter, query, limit} : {
     limit?: number
 }) {
     try {
-        const buildQuery = [Query.orderDesc('createdAt')]
+        const buildQuery = [Query.orderDesc('$createdAt')]
 
         if (filter && filter !== 'All') {
             buildQuery.push(Query.equal('type', filter))
@@ -137,5 +137,19 @@ export async function getProperties({filter, query, limit} : {
     } catch (error) {
         console.error(error)
         return []
+    }
+}
+
+export async function getPropertyById({ id }: { id: string }) {
+    try {
+        const result = await databases.getDocument(
+            config.databaseId!,
+            config.propertiesCollectionId!,
+            id,
+        );
+        return result;
+    } catch (error) {
+        console.error(error);
+        return null;
     }
 }
