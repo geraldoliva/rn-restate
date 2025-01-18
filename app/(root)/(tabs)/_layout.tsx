@@ -19,7 +19,7 @@ const TabsLayout = () => {
                 tabBarShowLabel: false,
                 tabBarStyle: {
                     backgroundColor: 'white',
-                    borderBottomColor: 'black',
+                    // borderBottomColor: 'black',
                     position: 'absolute',
                     borderTopColor: '#0061FF1A',
                     borderTopWidth: 1,
